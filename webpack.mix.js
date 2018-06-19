@@ -12,4 +12,29 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+  .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.autoload({
+  jquery: ['$', 'jQuery', 'jquery', 'window.jQuery'],
+});
+
+mix.js('resources/assets/js/paper-dashboard.js', 'public/js')
+  .sass('resources/assets/sass/paper-dashboard.scss', 'public/css');
+
+mix.js('resources/assets/js/auth.js', 'public/js');
+
+mix.extract([
+  'axios',
+  'bootstrap',
+  'bootstrap-notify',
+  'bootstrap-sass',
+  'jquery',
+  'lodash',
+  'perfect-scrollbar/src/js/adaptor/jquery',
+  'popper.js',
+  'vue',
+], 'public/js/vendor.js');
+
+mix.version();
+
+mix.setPublicPath('public');
