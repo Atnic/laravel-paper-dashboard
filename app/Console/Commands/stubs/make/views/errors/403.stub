@@ -1,19 +1,21 @@
-@extends('inspinia::layouts.auth')
+@extends('paper-dashboard::layouts.auth')
 
 @section('content')
-<div class="middle-box text-center animated fadeInDown">
-  <h1>403</h1>
-  <h3 class="font-bold">Oops! {{ class_basename($exception->getPrevious() ? : $exception) }}</h3>
-
-  <div class="error-desc">
-    {{ $exception->getPrevious() ? $exception->getPrevious()->getMessage() : $exception->getMessage() }}
-    <form class="form-inline m-t" role="form">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
+<div class="content" style="padding-top: 15vh">
+  <div class="container">
+    <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+      <div class="card card-login">
+        <div class="card-header ">
+          <div class="card-header ">
+            <h3 class="header text-center">403</h3>
+          </div>
+        </div>
+        <div class="card-body ">
+          <p>Oops! {{ class_basename($exception->getPrevious() ? : $exception) }}</p>
+          <p>{{ $exception->getPrevious() ? $exception->getPrevious()->getMessage() : $exception->getMessage() }}</p>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Search</button>
-      <a href="{{ route('home') }}" class="btn btn-default">Home</a>
-    </form>
+    </div>
   </div>
 </div>
 @endsection

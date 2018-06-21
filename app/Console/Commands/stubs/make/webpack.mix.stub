@@ -6,7 +6,8 @@ mix.autoload({
 mix.js('resources/assets/js/paper-dashboard.js', 'public/js')
   .sass('resources/assets/sass/paper-dashboard.scss', 'public/css');
 
-mix.js('resources/assets/js/auth.js', 'public/js');
+mix.js('resources/assets/js/auth.js', 'public/js')
+  .sass('resources/assets/sass/auth.scss', 'public/css');
 
 mix.extract([
   'axios',

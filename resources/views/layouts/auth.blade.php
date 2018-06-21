@@ -14,58 +14,81 @@
 
   <!-- Styles -->
   @section('styles')
-  <link href="{{ mix('/css/paper-dashboard.css') }}" rel="stylesheet">
+  <link href="{{ mix('/css/auth.css') }}" rel="stylesheet">
   @show
+  @stack('head')
 </head>
 
-<body>
-  <nav class="navbar navbar-transparent navbar-absolute">
+<body class="login-page">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
     <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="https://demos.creative-tim.com/paper-dashboard-pro/examples/dashboard/overview.html">Paper Dashboard PRO</a>
+      <div class="navbar-wrapper">
+        <div class="navbar-toggle">
+          <button type="button" class="navbar-toggler">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
+        </div>
+        <a class="navbar-brand" href="/">@yield('title', config('app.name', 'Paper Dashboard'))</a>
       </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="https://demos.creative-tim.com/paper-dashboard-pro/examples/pages/register.html">
-              Register
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <ul class="navbar-nav">
+          <li class="nav-item ">
+            <a href="{{ route('register') }}" class="nav-link">
+              <i class="nc-icon nc-book-bookmark"></i> Register
             </a>
           </li>
-          <li>
-            <a href="https://demos.creative-tim.com/paper-dashboard-pro/examples/dashboard/overview.html">
-              Dashboard
+          <li class="nav-item  active ">
+            <a href="{{ route('login') }}" class="nav-link">
+              <i class="nc-icon nc-tap-01"></i> Login
             </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
-  <div class="wrapper wrapper-full-page">
-    <div class="full-page login-page" data-color="" data-image="../../assets/img/background/background-2.jpg">
-      <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
+  <!-- End Navbar -->
+  <div class="wrapper wrapper-full-page ">
+    <div class="full-page section-image" filter-color="black" data-image="{{ asset('/img/bg/fabio-mangione.jpg') }}">
+      <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
       @yield('content')
 
-      <footer class="footer footer-transparent">
-        <div class="container">
-          <div class="copyright">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>2018, made with <i class="fa fa-heart heart"></i> by <a href="https://www.creative-tim.com/">Creative Tim</a>
+      <footer class="footer footer-white">
+        <div class="container-fluid">
+          <div class="row">
+            <nav class="footer-nav">
+              <ul>
+                {{-- <li>
+                  <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a>
+                </li>
+                <li>
+                  <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
+                </li> --}}
+                <li>
+                  <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="credits ml-auto">
+              <span class="copyright">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i>
+              </span>
+            </div>
           </div>
         </div>
       </footer>
-      <div class="full-page-background" style="background-image: url(../../assets/img/background/background-2.jpg) "></div>
     </div>
   </div>
-
   @section('scripts')
   <script src="{{ mix('/js/manifest.js') }}" charset="utf-8"></script>
   <script src="{{ mix('/js/vendor.js') }}" charset="utf-8"></script>
