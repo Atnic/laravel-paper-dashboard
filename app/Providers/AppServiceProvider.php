@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace Atnic\PaperDashboard\Providers;
 
-use App\Console\Commands\PaperDashboardMakeCommand;
+use Atnic\PaperDashboard\Console\Commands\PaperDashboardMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

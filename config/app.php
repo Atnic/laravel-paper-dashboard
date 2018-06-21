@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Atnic\PaperDashboard\Providers\AppServiceProvider::class,
+        Atnic\PaperDashboard\Providers\AuthServiceProvider::class,
+        // Atnic\PaperDashboard\Providers\BroadcastServiceProvider::class,
+        Atnic\PaperDashboard\Providers\EventServiceProvider::class,
+        Atnic\PaperDashboard\Providers\RouteServiceProvider::class,
 
     ],
 

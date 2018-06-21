@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Atnic\PaperDashboard\Console\Commands;
 
 use Illuminate\Console\Command;
 
