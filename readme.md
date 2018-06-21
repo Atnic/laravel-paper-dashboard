@@ -1,58 +1,100 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Laravel Paper Dashboard
+Laravel Package for integrating Paper Dashboard template and this package is Laravel Mix friendly. Currently this package can be integrated easily only on fresh installation.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# Installation
+```bash
+composer require atnic/laravel-paper-dashboard
+```
+If you are using Laravel 5.5 above skip this step. Add this line on ```config/app.php```, on  ```providers```
+```php
+'providers' => [
+  ...
+  Atnic\PaperDashboard\Providers\AppServiceProvider::class,
+  ...
+]
+```
+And then run,
+```bash
+php artisan make:paper-dashboard
+```
+Let's see what we've install. First, make sure that you already ran ```php artisan migrate``` command, then do
+```bash
+php artisan serve
+```
+Viola! You've running a Laravel site using Paper Dashboard.
 
-## About Laravel
+For more information on command
+```bash
+php artisan make:paper-dashboard --help
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+# Usage
+This package provides view for auth and app. Take a look at ```resources/views/layouts/app.blade.php```.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+In this file you can extends global section like menu.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+To extends menu add this in ```app.blade.php```
+```blade
+@section('sidebar-menu')
+<ul class="nav">
+  <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
+    <a href="{{ route('home') }}">
+      <i class="nc-icon nc-bank"></i>
+      <p>Home</p>
+    </a>
+  </li>
+</ul>
+@endsection
+```
 
-## Learning Laravel
+This package give you free of choice to use any Laravel Package for Menu. We recommend [spatie/laravel-menu](https://github.com/spatie/laravel-menu) or [lavary/laravel-menu](https://github.com/lavary/laravel-menu).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+Any new created page should extends this view.
+```blade
+@extends('layouts.app')
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+// Your blade here
+```
 
-## Laravel Sponsors
+# Configuration and Views Customization
+## Config
+To publish this package config to your app config run
+```bash
+php artisan vendor:publish --provider="Atnic\PaperDashboard\Providers\AppServiceProvider" --tag="config"
+```
+## Views
+To publish this package views so you can customize on your own run
+```bash
+php artisan vendor:publish --provider="Atnic\PaperDashboard\Providers\AppServiceProvider" --tag="views"
+```
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+# Next Step
+First of all, you should understand how to use [Laravel Mix](https://laravel.com/docs/5.5/mix).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+Paper Dashboard need some package on npm. First you need to run
+```bash
+npm install
+```
 
-## Contributing
+Install Paper Dashboard needed package from npm
+```bash
+npm install --save-dev bootstrap bootstrap-notify bootstrap-sass font-awesome popper.js perfect-scrollbar
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Run Laravel Mix command
+```bash
+npm run development
+```
+or use ```production``` minimize output
+```bash
+npm run production
+```
 
-## Security Vulnerabilities
+Then have a good look on these files
+- ```webpack.mix.js```
+- ```resources/assets/js/paper-dashboard.js```
+- ```resources/assets/js/auth.js```
+- ```resources/assets/sass/paper-dashboard.scss```
+- ```resources/assets/sass/auth.scss```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Happy experimenting!
